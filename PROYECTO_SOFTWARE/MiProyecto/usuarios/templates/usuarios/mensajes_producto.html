@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes sobre {{ producto.nombre }}</title>
+    <link rel="stylesheet" href="{% static 'usuarios/mensaje_producto.css' %}">
+</head>
+<body>
+
+    <div class="message-container">
+        <div class="message-header">
+            Mensajes sobre {{ producto.nombre }}
+        </div>
+
+        <!-- Lista de clientes -->
+        <div class="message-list">
+            {% for cliente in clientes_chat %}
+            <div class="client-message">
+                <p>{{ cliente.username }}</p>
+                <a href="{% url 'chat' producto.id cliente.id %}">
+                    <button>Ver Chat</button>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'mis_productos' %}">
+            <button class="back-button">Volver a Mis Productos</button>
+        </a>
+    </div>
+
+</body>
+</html>

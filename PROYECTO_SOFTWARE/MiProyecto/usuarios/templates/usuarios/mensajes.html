@@ -1,0 +1,8 @@
+<h2>Mensajes</h2>
+
+{% for usuario in usuarios_chat %}
+    <p><strong>{{ usuario.username }}</strong></p>
+    <a href="{% url 'chat' usuario.id %}"><button>Ver Chat</button></a>
+{% endfor %}
+
+<a href="{% url 'panel_proveedor' %}"><button>Volver al Panel</button></a>

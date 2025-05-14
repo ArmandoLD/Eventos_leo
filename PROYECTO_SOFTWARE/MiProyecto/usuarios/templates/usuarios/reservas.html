@@ -1,0 +1,10 @@
+<h2>Reservas</h2>
+{% for reserva in reservas_pendientes %}
+    <p>Cliente: {{ reserva.cliente.username }} - Fecha: {{ reserva.fecha }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="accion" value="aceptar">Aceptar</button>
+        <button type="submit" name="accion" value="rechazar">Rechazar</button>
+    </form>
+{% endfor %}
+<a href="{% url 'panel_proveedor' %}"><button>Volver al Panel</button></a>

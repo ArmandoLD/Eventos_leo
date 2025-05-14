@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Reservas</title>
+    <link rel="stylesheet" href="{% static 'usuarios/gestionar_reservas.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Reservas Pendientes</h2>
+
+        <!-- Grid de reservas -->
+        <div class="reservation-grid">
+            {% for reserva in reservas %}
+            <div class="reservation-card">
+                <h3>Cliente: {{ reserva.cliente.username }}</h3>
+                <p><strong>Producto:</strong> {{ reserva.producto.nombre }}</p>
+                <p><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+                <p><strong>Estado:</strong> {{ reserva.estado }}</p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="reserva_id" value="{{ reserva.id }}">
+                    <button type="submit" name="accion" value="aceptar" class="accept-button">Aceptar Reserva</button>
+                    <button type="submit" name="accion" value="rechazar" class="reject-button">Rechazar Reserva</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'panel_proveedor' %}">
+            <button class="back-button">Volver al Panel</button>
+        </a>
+    </div>
+
+</body>
+</html>

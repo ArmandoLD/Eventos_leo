@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - FiestaRF</title>
+    <link rel="stylesheet" href="{% static 'usuarios/inicio.css' %}">
+</head>
+<body>
+
+    <!-- Barra superior -->
+    <div class="navbar">
+        <h1>FiestaRF</h1>
+        <div>
+            <a href="{% url 'login' %}">Iniciar sesión</a>
+            <a href="{% url 'registro' %}">Regístrate</a>
+        </div>
+    </div>
+
+    <!-- Carrusel de imágenes con desplazamiento -->
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="{% static 'imagenes/shows-fiestas-de-quince-15-alive-10.jpg' %}" alt="Imagen 1">
+            <img src="{% static 'imagenes/local-para-una-fiesta-intima.jpg' %}" alt="Imagen 2">
+            <img src="{% static 'imagenes/decoraciones-especiales.jpg' %}" alt="Imagen 3">
+            <img src="{% static 'imagenes/Banquetes-para-eventos-economicos-1.jpg' %}" alt="Imagen 3">
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h2>¿Quiénes Somos?</h2>
+        <p>Bienvenidos a <strong>FiestaRF</strong>, tu socio confiable en la organización de eventos inolvidables...</p>
+
+        <h2>Nuestra Misión</h2>
+        <p>Facilitar la planificación de eventos con agilidad, calidad y creatividad...</p>
+
+        <h2>¿Qué Nos Hace Diferentes?</h2>
+        <ul>
+            <li>✅ Proveedores Verificados</li>
+            <li>✅ Todo en un Solo Lugar</li>
+            <li>✅ Asesoría Personalizada</li>
+            <li>✅ Tecnología Intuitiva</li>
+        </ul>
+
+        <h2>Nuestros Servicios</h2>
+        <ul>
+            <li>📍 Alquiler de Locales</li>
+            <li>🎶 Entretenimiento</li>
+            <li>🍽️ Banquetes y Catering</li>
+            <li>📅 Coordinación Integral</li>
+        </ul>
+    </div>
+
+</body>
+</html>

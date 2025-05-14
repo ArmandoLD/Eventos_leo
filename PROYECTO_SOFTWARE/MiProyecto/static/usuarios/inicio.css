@@ -1,0 +1,67 @@
+/* Fondo general */
+body {
+    background-color: #ffccdd;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Barra superior */
+.navbar {
+    background-color: #333;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 15px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Carrusel horizontal */
+.carousel-container {
+    width: 80%;
+    overflow: hidden;
+    position: relative;
+    margin: 20px auto;
+}
+
+.carousel {
+    display: flex;
+    width: 300%;
+    animation: slide 10s infinite linear;
+}
+
+.carousel img {
+    width: 33.33%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Animación de deslizamiento */
+@keyframes slide {
+    0% { transform: translateX(0%); }
+    33% { transform: translateX(-33.33%); }
+    66% { transform: translateX(-66.66%); }
+    100% { transform: translateX(0%); }
+}

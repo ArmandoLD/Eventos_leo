@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ producto.nombre }}</title>
+    <link rel="stylesheet" href="{% static 'usuarios/detalle_producto.css' %}">
+</head>
+<body>
+
+    <!-- Contenedor principal -->
+    <div class="product-container">
+        <h2>{{ producto.nombre }}</h2>
+        <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+        <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+        <p><strong>Capacidad:</strong> {{ producto.capacidad }} personas</p>
+        <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+
+        <h3>Información del Proveedor</h3>
+        <p><strong>Proveedor:</strong> {{ producto.proveedor.username }}</p>
+
+        <h3>Reservar Producto</h3>
+        <form action="{% url 'reservar_producto' producto.id %}" method="post">
+            {% csrf_token %}
+            <label for="fecha">Selecciona la fecha:</label>
+            <input type="date" name="fecha" id="fecha" required>
+            <button type="submit">Reservar</button>
+        </form>
+
+        <a href="{% url 'chat' producto.id request.user.id %}">
+            <button class="chat-button">Chatear con el Proveedor</button>
+        </a>
+
+        <a href="{% url 'exploracion_productos' %}">
+            <button class="back-button">Volver a la Exploración</button>
+        </a>
+    </div>
+
+</body>
+</html>

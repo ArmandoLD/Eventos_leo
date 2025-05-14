@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto: {{ producto.nombre }}</title>
+    <link rel="stylesheet" href="{% static 'usuarios/editar_producto.css' %}">
+</head>
+<body>
+
+    <!-- Contenedor del formulario -->
+    <div class="edit-container">
+        <h2>Editar Producto: {{ producto.nombre }}</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar Cambios</button>
+        </form>
+
+        <a href="{% url 'mis_productos' %}">
+            <button class="cancel-button">Cancelar</button>
+        </a>
+    </div>
+
+</body>
+</html>

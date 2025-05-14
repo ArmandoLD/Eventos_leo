@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explora Productos</title>
+    <link rel="stylesheet" href="{% static 'usuarios/exploracion.css' %}">
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <h1>FiestaRF</h1>
+        <div>
+            <a href="{% url 'perfil_cliente' %}">Mi Perfil</a>
+            <a href="{% url 'mis_reservas' %}">Mis Reservas</a>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Cerrar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <h2>Explora Productos</h2>
+
+        <!-- Filtros -->
+        <div class="filters">
+            <form method="GET">
+                <label for="categoria">Categoría:</label>
+                <select name="categoria">
+                    <option value="todos">Todos</option>
+                    <option value="local">Local</option>
+                    <option value="entretenimiento">Entretenimiento</option>
+                    <option value="comida">Comida</option>
+                </select>
+
+                <label for="precio_min">Precio mínimo:</label>
+                <input type="number" name="precio_min" min="0">
+
+                <label for="precio_max">Precio máximo:</label>
+                <input type="number" name="precio_max" min="0">
+
+                <label for="capacidad">Capacidad mínima:</label>
+                <input type="number" name="capacidad" min="1">
+
+                <button type="submit">Filtrar</button>
+            </form>
+        </div>
+
+        <!-- Grid de productos -->
+        <div class="product-grid">
+            {% for producto in productos %}
+            <div class="product-card">
+                <h3>{{ producto.nombre }}</h3>
+                <p>{{ producto.descripcion }}</p>
+                <p>Capacidad: {{ producto.capacidad }} personas</p>
+                <p>Precio: ${{ producto.precio }}</p>
+                <a href="{% url 'detalle_producto' producto.id %}">
+                    <button>Ver Detalles</button>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

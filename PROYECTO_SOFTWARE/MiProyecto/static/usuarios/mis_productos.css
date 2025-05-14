@@ -1,0 +1,79 @@
+/* Fondo y estructura general */
+body {
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Grid de productos */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Tarjetas de productos */
+.product-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Títulos y textos */
+h2 {
+    color: #333;
+    text-align: center;
+}
+
+.product-card h3 {
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.product-card p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Botones */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Botón de eliminar */
+.delete-button {
+    background-color: #ff385c;
+}
+
+.delete-button:hover {
+    background-color: #d90429;
+}
+
+/* Botón de agregar producto */
+.add-product {
+    background-color: #28a745;
+}
+
+.add-product:hover {
+    background-color: #218838;
+}

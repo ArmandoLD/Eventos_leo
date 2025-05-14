@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat sobre {{ producto.nombre }}</title>
+    <link rel="stylesheet" href="{% static 'usuarios/chat.css' %}">
+</head>
+<body>
+
+    <!-- Contenedor del chat -->
+    <div class="chat-container">
+        <div class="chat-header">
+            Chat sobre {{ producto.nombre }}
+        </div>
+
+        <!-- Mensajes -->
+        <div id="chat-box">
+            {% for mensaje in mensajes %}
+                <div class="mensaje {% if mensaje.remitente == request.user %}mensaje-propio{% else %}mensaje-otro{% endif %}">
+                    <strong>{{ mensaje.remitente.username }}:</strong> {{ mensaje.contenido }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Formulario para enviar mensajes -->
+        <form method="post" class="chat-form">
+            {% csrf_token %}
+            <input type="text" name="contenido" placeholder="Escribe un mensaje..." required>
+            <button type="submit">Enviar</button>
+        </form>
+
+        <!-- Botón de regreso -->
+        {% if usuario_actual.tipo_usuario == "cliente" %}
+            <a href="{% url 'detalle_producto' producto.id %}">
+                <button class="btn-secondary">Volver a los Detalles del Producto</button>
+            </a>
+        {% else %}
+            <a href="{% url 'mensajes_producto' producto.id %}">
+                <button class="btn-secondary">Volver a Mensajes de Clientes</button>
+            </a>
+        {% endif %}
+    </div>
+
+</body>
+</html>

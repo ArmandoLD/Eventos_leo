@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Reservas</title>
+    <link rel="stylesheet" href="{% static 'usuarios/reservas.css' %}">
+</head>
+<body>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <h2>Mis Reservas</h2>
+
+        <!-- Grid de reservas -->
+        <div class="reservation-grid">
+            {% for reserva in reservas %}
+            <div class="reservation-card">
+                <h3>{{ reserva.producto.nombre }}</h3>
+                <p><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+                <p><strong>Estado:</strong> {{ reserva.estado }}</p>
+
+                {% if reserva.estado == "aceptada" %}
+                <a href="{% url 'pago_reserva' reserva.id %}">
+                    <button class="pay-button">Proceder al Pago</button>
+                </a>
+                {% endif %}
+
+                <button class="cancel-button" onclick="confirmarCancelacion('{{ reserva.id }}')">Cancelar Reserva</button>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'exploracion_productos' %}">
+            <button>Volver a la Exploración</button>
+        </a>
+    </div>
+
+    <script>
+        function confirmarCancelacion(reservaId) {
+            let confirmacion = confirm("¿Estás seguro de que quieres cancelar esta reserva?");
+            if (confirmacion) {
+                window.location.href = `/reservas/cancelar/${reservaId}/`;
+            }
+        }
+    </script>
+
+</body>
+</html>

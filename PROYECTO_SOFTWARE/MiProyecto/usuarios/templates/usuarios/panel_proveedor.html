@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Proveedor</title>
+    <link rel="stylesheet" href="{% static 'usuarios/panel_proveedor.css' %}">
+</head>
+<body>
+
+    <!-- Contenedor del panel -->
+    <div class="panel-container">
+        <h2>Panel de Proveedor</h2>
+        <p>Bienvenido, {{ request.user.username }}. Administra tu negocio aquí.</p>
+
+        <a href="{% url 'mis_productos' %}"><button>Mis Productos</button></a>
+        <a href="{% url 'gestionar_reservas' %}"><button>Gestionar Reservas</button></a>
+        <a href="{% url 'perfil_proveedor' %}"><button>Perfil</button></a>
+
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">Cerrar sesión</button>
+        </form>
+    </div>
+
+</body>
+</html>

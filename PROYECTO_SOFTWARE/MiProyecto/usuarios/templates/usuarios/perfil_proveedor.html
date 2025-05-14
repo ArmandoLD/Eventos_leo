@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Proveedor</title>
+    <link rel="stylesheet" href="{% static 'usuarios/perfil_proveedor.css' %}">
+</head>
+<body>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <h2>Perfil de Proveedor</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar cambios</button>
+        </form>
+
+        <a href="{% url 'panel_proveedor' %}">
+            <button class="btn-secondary">Volver al Panel</button>
+        </a>
+    </div>
+
+</body>
+</html>

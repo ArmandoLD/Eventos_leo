@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Productos</title>
+    <link rel="stylesheet" href="{% static 'usuarios/mis_productos.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Mis Productos</h2>
+
+        <!-- Grid de productos -->
+        <div class="product-grid">
+            {% for producto in productos %}
+            <div class="product-card">
+                <h3>{{ producto.nombre }}</h3>
+                <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+                <p>{{ producto.descripcion }}</p>
+                <p><strong>Capacidad:</strong> {{ producto.capacidad }} personas</p>
+                <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+
+                <a href="{% url 'mensajes_producto' producto.id %}">
+                    <button>Mensajes de Clientes</button>
+                </a>
+
+                <a href="{% url 'editar_producto' producto.id %}">
+                    <button>Editar Producto</button>
+                </a>
+
+                <form method="post" action="{% url 'eliminar_producto' producto.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-button">Eliminar Producto</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'agregar_producto' %}">
+            <button class="add-product">Agregar Producto</button>
+        </a>
+
+        <a href="{% url 'panel_proveedor' %}">
+            <button class="btn-secondary">Volver al Panel</button>
+        </a>
+    </div>
+
+</body>
+</html>

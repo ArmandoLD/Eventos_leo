@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago de Reserva</title>
+    <link rel="stylesheet" href="{% static 'usuarios/pago_reserva.css' %}">
+</head>
+<body>
+
+    <!-- Contenedor del pago -->
+    <div class="payment-container">
+        <h2>Pago de Reserva</h2>
+
+        <p><strong>Producto:</strong> {{ reserva.producto.nombre }}</p>
+        <p><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+        <p><strong>Estado:</strong> {{ reserva.estado }}</p>
+        <p><strong>Total a pagar:</strong> ${{ reserva.producto.precio }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Realizar Pago</button>
+        </form>
+
+        <a href="{% url 'mis_reservas' %}">
+            <button class="cancel-button">Cancelar</button>
+        </a>
+    </div>
+
+</body>
+</html>
